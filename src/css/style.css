@@ -1,0 +1,28 @@
+body {
+  background-image: url("../assert/backgorud.jpg");
+  background-size: cover;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 5px;
+  color: #333;
+  font-family: sans-serif;
+  line-height: 1.5;
+  max-width: 50%;
+  padding: 1rem 2rem;
+  margin-top: 10%;
+  margin-left: 25%;
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .box {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .warning {
+    display: none;
+  }
+}
+/*# sourceMappingURL=style.css.map */

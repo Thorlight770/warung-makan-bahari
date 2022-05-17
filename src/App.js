@@ -1,17 +1,12 @@
-// import logo from './logo.svg';
-// import { useState } from 'react';
 import './App.css';
-import NavBar from './NavBar';
-import Content from './Content';
-import Footer from './Footer';
+import './css/style.css'
+import Login from './login/login'
 
 function App() {
   return (
-    <>
-      <NavBar/>
-      <Content/>
-      <Footer/>
-    </>
+    <div className='backgroud-main'>
+      <Login/>
+    </div>
   );
 }
 
