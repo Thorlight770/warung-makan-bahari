@@ -32,6 +32,7 @@ export default class Menu extends Component {
       return <Food 
       foods={this.props.foods} 
       addFood={this.props.addFood}
+      removeFood={this.props.removeFood}
       logout={this.logout}/>;
     } else if (this.state.isTable) {
       <Table tables={this.props.tables}/>;

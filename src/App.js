@@ -27,10 +27,12 @@ export default class App extends Component {
     });
   };
 
-  removeFood = (food) => {
-    console.log(food);
+  removeFood = (index) => {
     const list = [...this.state.foods];
-    // list.find(
+    list.splice(index, 1)
+    this.setState({
+      foods : list
+    })
   }
 
   render() {
@@ -41,6 +43,7 @@ export default class App extends Component {
           foods={this.state.foods}
           tables={this.state.tables}
           addFood={this.addFood}
+          removeFood={this.removeFood}
         />
       );
     } else {

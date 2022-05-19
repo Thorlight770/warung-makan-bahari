@@ -21,6 +21,10 @@ export default class Food extends Component {
     });
   };
 
+  deleteFood(number) {
+    this.props.removeFood(number)
+  }
+
   render() {
     if (this.state.menuForm) {
       return <Form addFood={this.props.addFood} menuBack={this.menuBack} />;
@@ -84,7 +88,8 @@ export default class Food extends Component {
                         <td>{food.name}</td>
                         <td>{food.price}</td>
                         <td>
-                          <button className="btn btn-danger">Deleted</button>
+                          <button className="btn btn-danger" onClick={() => {
+                            this.deleteFood(i)}}>Deleted</button>
                         </td>
                       </tr>
                     );
