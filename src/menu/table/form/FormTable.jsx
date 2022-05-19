@@ -33,13 +33,21 @@ export default class FormTable extends Component {
       });
     }
 
-    // if () {
-    //     this.setState({
-    //         btnStatus : false
-    //     })
-    // }
+    let id = document.getElementById("idTable").value
+    let number = document.getElementById("numberTable").value
+    let status = document.getElementById("statusTable").value
 
-    console.log(this.state.table);
+    console.log(id);
+
+    if(id.length > 0 && number.length > 0 && status.length > 0){
+      this.setState({
+        btnStatus : false
+      })
+    }else{
+      this.setState({
+        btnStatus : true
+      })
+    }
   };
 
   render() {
@@ -52,6 +60,7 @@ export default class FormTable extends Component {
               type="text"
               className="form-control"
               name="idTable"
+              id="idTable"
               onChange={this.handleChange}
             />
             <label className="from-label">NUMBER</label>
@@ -59,22 +68,23 @@ export default class FormTable extends Component {
               type="text"
               className="form-control"
               name="numberTable"
+              id="numberTable"
               onChange={this.handleChange}
             />
             <label className="from-label">STATUS</label>
             <select
-              class="form-select"
+              className="form-select"
               aria-label="Default select example"
-              value={this.state.table["status"]}
+              defaultValue={this.state.table["status"]}
               name="statusTable"
+              id="statusTable"
               onChange={this.handleChange}
             >
-              <option selected>--Chooes status table--</option>
               <option value="Available">Available</option>
               <option value="Unavailable">Unavailable</option>
             </select>
             <div className="d-flex my-2">
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-primary" type="submit" disabled={this.state.btnStatus}>
                 SUBMIT
               </button>
               <button

@@ -44,8 +44,19 @@ export default class Login extends Component {
         errorMessage : {
           email : "",
           password : "",
-        },
+        }
+      })
+    }
+
+    let email = document.getElementById("email").value
+    let password = document.getElementById("password").value
+    if(email.length > 0 && password.length > 0){
+      this.setState({
         btnStatus : false
+      })
+    }else{
+      this.setState({
+        btnStatus : true
       })
     }
   };
@@ -53,7 +64,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="container d-flex justify-content-center">
-        <div className="side-form col6">coba</div>
+        <div className="side-form col6">WARUNG MAKAN BAHARI</div>
         <div className="login-form col-6">
           <form>
             <div className="mb-3">

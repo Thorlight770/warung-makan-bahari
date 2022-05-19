@@ -84,7 +84,7 @@ export default class Food extends Component {
                   {this.props.foods.map((food, i) => {
                     return (
                       <tr key={i}>
-                        <td>{i + 1}</td>
+                        <td>{food.id}</td>
                         <td>{food.name}</td>
                         <td>{food.price}</td>
                         <td>
