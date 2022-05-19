@@ -30,48 +30,51 @@ export default class Food extends Component {
       return <Form addFood={this.props.addFood} menuBack={this.menuBack} />;
     } else {
       return (
-        <>
+        <div>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-              <p className="navbar-brand">FOOD</p>
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <button
-                      className="btn btn-primary my-3"
-                      onClick={this.menuForm}
-                    >
-                      New Food
-                    </button>
-                  </li>
-                  <li className="nav-item">
-                    <button
-                      className="btn btn-danger"
-                      onClick={this.props.logout}
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
+          <div className="container-fluid">
+            <p className="navbar-brand">
+              FOOD PAGE WMB
+            </p>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <p
+                    onClick={this.menuForm}
+                    className="nav-link active"
+                    aria-current="page"
+                  >
+                    New Menu
+                  </p>
+                </li>
+              </ul>
+              <form className="d-flex">
+                <button onClick={this.props.logout} className="btn btn-outline-success btn-menu" type="submit">
+                  Logout
+                </button>
+              </form>
             </div>
-          </nav>
+          </div>
+        </nav>
 
           {/* TABLE DATA */}
           <div className="container-table d-flex justify-content-center">
             <div className="col-6">
-              <table className="table">
+              <table className="table text-center">
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
@@ -98,7 +101,7 @@ export default class Food extends Component {
               </table>
             </div>
           </div>
-        </>
+        </div>
       );
     }
   }

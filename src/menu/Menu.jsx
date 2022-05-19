@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Food from "./food/Food";
 import Table from "./table/Table";
+import Swal from "sweetalert2";
 
 export default class Menu extends Component {
   constructor(props) {
@@ -25,6 +26,11 @@ export default class Menu extends Component {
 
   logout = () => {
       this.props.logout(false)
+      Swal.fire(
+        'Success Logout!',
+        'You clicked the button!',
+        'success'
+      )
   }
 
   render() {
@@ -42,7 +48,8 @@ export default class Menu extends Component {
       logout={this.logout}/>;
     } else {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
           <div className="container-fluid">
             <p className="navbar-brand">
               WMB
@@ -82,13 +89,14 @@ export default class Menu extends Component {
                 </li>
               </ul>
               <form className="d-flex">
-                <button onClick={this.logout} className="btn btn-outline-success" type="submit">
+                <button onClick={this.logout} className="btn btn-success btn-menu" type="submit">
                   Logout
                 </button>
               </form>
             </div>
           </div>
         </nav>
+        </>
       );
     }
   }

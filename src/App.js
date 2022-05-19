@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Login from "./login/Login";
 import Menu from "./menu/Menu";
+import 'aos/dist/aos.css';
+import Swal from "sweetalert2";
 
 export default class App extends Component {
   constructor(props) {
@@ -25,6 +27,11 @@ export default class App extends Component {
     this.setState({
       foods: list,
     });
+    Swal.fire(
+      'Success!',
+      'Insert data food!',
+      'success'
+    )
   };
 
   removeFood = (index) => {
@@ -33,6 +40,11 @@ export default class App extends Component {
     this.setState({
       foods : list
     })
+    Swal.fire(
+      'Success!',
+      'Remove data food!',
+      'success'
+    )
   }
 
   addTable = (table) => {
@@ -42,6 +54,11 @@ export default class App extends Component {
     this.setState({
       tables: list,
     });
+    Swal.fire(
+      'Success!',
+      'Insert data table!',
+      'success'
+    )
   };
 
   removeTable = (index) => {
@@ -50,6 +67,11 @@ export default class App extends Component {
     this.setState({
       tables : list
     })
+    Swal.fire(
+      'Success!',
+      'Remove data food!',
+      'success'
+    )
   }
 
   render() {

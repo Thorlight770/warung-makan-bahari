@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/main.css";
+import Swal from "sweetalert2";
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,8 +19,17 @@ export default class Login extends Component {
     let password = document.getElementById("password").value
     if (email === "admin@example.com" && password === "12345678") {
       this.props.login(true)
+      Swal.fire(
+        'Success!',
+        'Welcome WMB App!',
+        'success'
+      )
     }else{
-      alert("Incorrect login username or password")
+      Swal.fire(
+        'Access Denied!',
+        'Incorrect login username or password!',
+        'error'
+      )
     }
   }
 
@@ -64,9 +74,25 @@ export default class Login extends Component {
   render() {
     return (
       <div className="container d-flex justify-content-center">
-        <div className="side-form col6">WARUNG MAKAN BAHARI</div>
+        <div className="side-form col6">
+          <h3>Warung Makan Bahari</h3>
+          <p className="sub-text">This restaurant since 1634</p>
+          <p className="content-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus 
+            quis veritatis quas doloribus, rerum, eveniet hic harum, optio nisi consequuntur iusto eos. Enim, quidem quibusdam voluptatum obcaecati quaerat nostrum reprehenderit.
+          </p>
+          <div className="d-flex my-5 justify-content-evenly align-items-start">
+          <i class="bi bi-broadcast-pin"></i>
+          <i class="bi bi-people-fill"></i>
+          <i class="bi bi-egg-fried"></i>
+          <i class="bi bi-hand-thumbs-up-fill"></i>
+          <i class="bi bi-person-bounding-box"></i>
+          </div>
+          <button className="btn btn-outline-primary">About App</button>
+        </div>
         <div className="login-form col-6">
           <form>
+            <h1>LOGIN PAGE</h1>
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Email address
@@ -97,16 +123,6 @@ export default class Login extends Component {
               <div id="emailHelp" className="form-text">
                 {this.state.errorMessage['password']}
               </div>
-            </div>
-            <div className="mb-3 form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" htmlFor="exampleCheck1">
-                Check me out
-              </label>
             </div>
             <button type="button" className="btn btn-primary" disabled={this.state.btnStatus} onClick={this.handleLogin}>
               Submit

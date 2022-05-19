@@ -22,7 +22,7 @@ export default class Table extends Component {
   };
 
   deleteTable(number) {
-    this.props.removeTable(number)
+    this.props.removeTable(number);
   }
 
   render() {
@@ -33,37 +33,42 @@ export default class Table extends Component {
         <>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-              <p className="navbar-brand">TABLE</p>
+              <p className="navbar-brand">TABLE PAGE WMB</p>
               <button
                 className="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
+              <div
+                className="collapse navbar-collapse"
+                id="navbarSupportedContent"
+              >
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <button
-                      className="btn btn-primary my-3"
+                    <p
                       onClick={this.menuForm}
+                      className="nav-link active"
+                      aria-current="page"
                     >
                       New Table
-                    </button>
-                  </li>
-                  <li className="nav-item">
-                    <button
-                      className="btn btn-danger"
-                      onClick={this.props.logout}
-                    >
-                      Logout
-                    </button>
+                    </p>
                   </li>
                 </ul>
+                <form className="d-flex">
+                  <button
+                    onClick={this.props.logout}
+                    className="btn btn-outline-success btn-menu"
+                    type="submit"
+                  >
+                    Logout
+                  </button>
+                </form>
               </div>
             </div>
           </nav>
@@ -86,12 +91,20 @@ export default class Table extends Component {
                       <tr key={i}>
                         <td>{table.id}</td>
                         <td>{table.number}</td>
-                        {table.status === "Available" ? 
-                        <td style={{color : "blue"}}>{table.status}</td> : 
-                        <td style={{color : "orange"}}>{table.status}</td> }
+                        {table.status === "Available" ? (
+                          <td style={{ color: "blue" }}>{table.status}</td>
+                        ) : (
+                          <td style={{ color: "orange" }}>{table.status}</td>
+                        )}
                         <td>
-                          <button className="btn btn-danger" onClick={() => {
-                            this.deleteTable(i)}}>Deleted</button>
+                          <button
+                            className="btn btn-danger"
+                            onClick={() => {
+                              this.deleteTable(i);
+                            }}
+                          >
+                            Deleted
+                          </button>
                         </td>
                       </tr>
                     );
