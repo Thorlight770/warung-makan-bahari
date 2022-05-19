@@ -37,18 +37,6 @@ export default class FormFood extends Component {
         },
       });
     }
-
-    // if (
-    //     (event.target.name === "name" || event.target.name === "price") &&
-    //     event.target.value.length === 0
-    //   ) {
-    //     this.setState({
-    //       message: {
-    //         name: "required field",
-    //         price: "required field",
-    //       },
-    //     });
-    //   } else 
   };
 
   render() {

@@ -35,7 +35,11 @@ export default class Menu extends Component {
       removeFood={this.props.removeFood}
       logout={this.logout}/>;
     } else if (this.state.isTable) {
-      <Table tables={this.props.tables}/>;
+      return <Table 
+      tables={this.props.tables}
+      addTable={this.props.addTable}
+      removeTable={this.props.removeTable}
+      logout={this.logout}/>;
     } else {
       return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -69,7 +73,10 @@ export default class Menu extends Component {
                   </p>
                 </li>
                 <li className="nav-item">
-                  <p onClick={this.menuTable} className="nav-link">
+                  <p onClick={this.menuTable} 
+                  className="nav-link active"
+                  aria-current="page"
+                  >
                     Table
                   </p>
                 </li>

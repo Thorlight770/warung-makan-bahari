@@ -35,6 +35,23 @@ export default class App extends Component {
     })
   }
 
+  addTable = (table) => {
+    console.log(table.status);
+    const list = [...this.state.tables];
+    list.push(table);
+    this.setState({
+      tables: list,
+    });
+  };
+
+  removeTable = (index) => {
+    const list = [...this.state.tables];
+    list.splice(index, 1)
+    this.setState({
+      tables : list
+    })
+  }
+
   render() {
     if (this.state.isLogin) {
       return (
@@ -44,6 +61,8 @@ export default class App extends Component {
           tables={this.state.tables}
           addFood={this.addFood}
           removeFood={this.removeFood}
+          addTable={this.addTable}
+          removeTable={this.removeTable}
         />
       );
     } else {

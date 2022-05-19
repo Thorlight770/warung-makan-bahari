@@ -69,7 +69,7 @@ export default class Food extends Component {
           </nav>
 
           {/* TABLE DATA */}
-          <div className="container d-flex justify-content-center">
+          <div className="container-table d-flex justify-content-center">
             <div className="col-6">
               <table className="table">
                 <thead>
