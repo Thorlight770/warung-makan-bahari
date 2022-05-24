@@ -1,42 +1,27 @@
-import React, { Component, createContext } from 'react'
-import ButtonCounter from './ButtonCounter';
+import { useState } from "react";
+import Login from "./login/Login";
+import Navbar from "./navbar/Navbar";
 
+const App = () => {
+  const [isLogin, setIsLogin] = useState(false);
 
-export const RootContext = createContext();
-const Provider = RootContext.Provider;
+  const loginAuth = (value) => {
+    setIsLogin(value);
+  };
 
-class App extends Component {
-  state = {
-    globalNumber : 3
-  }
-
-  dispatch = (action) => {
-    if(action.type === "PLUS"){
-      return this.setState({
-        globalNumber : this.state.globalNumber + 1
-      })
-    }
-
-    if(action.type === "MINUS"){
-      return this.setState({
-        globalNumber : this.state.globalNumber - 1
-      })
-    }
-  }
-
-  render() {
+  if (isLogin) {
     return (
-      <Provider value={{
-        state : this.state,
-        dispatch : this.dispatch
-      }}>
-      <div className='text-center'>
-        <h1>{this.state.globalNumber}</h1>
-        <ButtonCounter />
-      </div>
-      </Provider>
-    )
+      <>
+        <Navbar logout={loginAuth} />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Login login={loginAuth} />
+      </>
+    );
   }
-}
+};
 
-export default App
+export default App;
