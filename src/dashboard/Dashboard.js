@@ -63,7 +63,7 @@ const Dashboard = () => {
       <div className="header d-flex justify-content-between  animate__fadeInUp">
         <h1>Dashboard</h1>
         <form className="d-flex align-items-center">
-          <i class="bi bi-bell mx-3"></i>
+          <i className="bi bi-bell mx-3"></i>
           <input className="search form-control" placeholder="Search"></input>
         </form>
       </div>

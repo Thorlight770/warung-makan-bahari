@@ -7,14 +7,14 @@ import "../css/navbarcss.css";
 import { Calendar } from "react-calendar";
 
 const Navbar = (props) => {
-  const { logout } = props;
+  const { logout, menu, addDataMenu, deleteDataMenu, updateDataMenu, addDataTable, table } = props;
   const [navigation, setNavigation] = useState("dashboard");
 
   let page = "";
   if (navigation === "menu") {
-    page = <Menu />;
+    page = <Menu menu={menu} addDataMenu={addDataMenu} deleteDataMenu={deleteDataMenu} updateDataMenu={updateDataMenu}/>;
   } else if (navigation === "table") {
-    page = <Table />;
+    page = <Table table={table} addDataTable={addDataTable}/>;
   } else if (navigation === "dashboard") {
     page = <Dashboard />;
   }

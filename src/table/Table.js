@@ -1,4 +1,5 @@
-const Table = () => {
+const Table = (props) => {
+  const {table} = props;
   return(
     <>
     <div className="header d-flex justify-content-between">
@@ -11,7 +12,7 @@ const Table = () => {
     <hr />
     <div className="body-content ">
       <button className="btn btn-primary my-4">New Table</button>
-      <table class="table table-striped">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -21,25 +22,25 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>
-              <button className="btn btn-warning">
-              <i class="bi bi-pencil-square"></i>
-              </button>
-              <button className="btn btn-danger mx-2">
-              <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
+        {table.map((data, i) => {
+              return (
+                <tr  key={i}>
+                  <td>{data.id}</td>
+                  <td>{data.number}</td>
+                  {data.status === "Available" ? 
+                  <td style={{color : "blue", fontWeight: "bold"}}>{data.status}</td> :
+                  <td style={{color : "orange", fontWeight: "bold"}}>{data.status}</td>}
+                  <td>
+                    <button className="btn btn-warning">
+                      <i className="bi bi-pencil-square"></i>
+                    </button>
+                    <button className="btn btn-danger mx-2">
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
