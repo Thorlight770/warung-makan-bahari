@@ -8,6 +8,7 @@ const Menu = (props) => {
   const [status, setStatus] = useState(); 
   
   const handleAddForm = (value) => {
+    console.log(value);
     setStatus(value);
   }
 

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { data } from "./dashboard/Dashboard";
 import Login from "./login/Login";
 import Navbar from "./navbar/Navbar";
 
