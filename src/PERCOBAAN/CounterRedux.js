@@ -1,6 +1,6 @@
 import ActionType from "./ActionType";
 
-const initialState = {
+export const initialState = {
     number : 5
 }
 

@@ -1,10 +1,13 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useContext } from 'react'
 import ActionType from './ActionType'
+import { RootContext } from './AppCoba'
 
 export const Increment = () => {
-    const dispatch = useDispatch();
+    const data = useContext(RootContext);
   return (
-    <button onClick={() => dispatch({type : ActionType.PLUS})}>-</button>
+    <>
+    <h1>{data.value.number}</h1>
+    <button onClick={() => data.dispatch({type : ActionType.PLUS})}>+</button>
+    </>
   )
 }

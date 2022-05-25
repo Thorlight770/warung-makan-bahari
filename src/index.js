@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 // import App from './App';
-// import AppCoba from './PERCOBAAN/AppCoba';
+import AppCoba from './PERCOBAAN/AppCoba';
 // import Table from './menu/table/Table';
-import AppTodo from './TODO/AppTodo';
+// import AppTodo from './TODO/AppTodo';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './TODO/CounterStore';
@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
   <Provider store={store}>
-    {/* <AppCoba/> */}
-  <AppTodo/>
+    <AppCoba/>
+  {/* <AppTodo/> */}
     {/* <App/> */}
   </Provider>
   </React.StrictMode>

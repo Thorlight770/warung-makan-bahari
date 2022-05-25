@@ -1,14 +1,21 @@
-import { useSelector } from "react-redux";
+import { createContext, useReducer } from "react";
+import counterRedux, {initialState} from "./CounterRedux";
 import { Increment } from "./Increment";
 
-const AppCoba = (props) => {
-    const number = useSelector((state) => state.number)
+export const RootContext = createContext();
+
+const AppCoba = () => {
+    const [data, dispatch] = useReducer(counterRedux, initialState);
+
+    const handleIncrement = (val) => {
+        dispatch(val)
+    }
     return(
-        <>
-        <h1>{number}</h1>
-        <Increment/>
-        {/* <button onClick={decrement}>-</button> */}
-        </>
+        <RootContext.Provider
+        value = {{value : data, dispatch : handleIncrement}}
+        >
+            <Increment/>
+        </RootContext.Provider>
     )
 }
 
