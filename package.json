@@ -53,5 +53,6 @@
   "devDependencies": {
     "@faker-js/faker": "^7.0.1",
     "faker": "^5.5.3"
-  }
+  },
+  "proxy" : "http://localhost:3001/"
 }
