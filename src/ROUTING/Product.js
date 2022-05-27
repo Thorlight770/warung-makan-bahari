@@ -1,11 +1,21 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
+import React from "react";
+import {
+  Route,
+  Routes
+} from "react-router-dom";
+import { NotFoundPage } from "./NotFoundPage";
+import { ProductForm } from "./ProductForm";
+import { ProductList } from "./ProductList";
 
 const Product = () => {
-    let params = useParams()
-    console.log(params);
   return (
-    <div>Product dengan id : {params.id}</div>
-  )
-}
+    <Routes>
+        <Route index element={<ProductList />} />
+        <Route path=":id" element={<Product />} />
+        <Route path="form" element={<ProductForm />} />
+        <Route path="list" element={<ProductList />} />
+        <Route path="*" element={<NotFoundPage/>} />
+    </Routes>
+  );
+};
 export default Product;

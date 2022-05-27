@@ -1,6 +1,8 @@
 import React from "react";
-import { Link, Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Link, Route, Routes, BrowserRouter as Router} from "react-router-dom";
+import { Customer } from "./Customer";
 import Home from "./Home";
+import { NotFoundPage } from "./NotFoundPage";
 import Product from "./Product";
 
 const AppRouting = () => {
@@ -30,8 +32,13 @@ const AppRouting = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/product">
+                <Link className="nav-link" to="/products">
                   Product
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/customers">
+                  Customer
                 </Link>
               </li>
               <li className="nav-item dropdown">
@@ -72,8 +79,9 @@ const AppRouting = () => {
       </nav>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/product" element={<Product/>} />
-        <Route path="/product/:id" element={<Product/>}/>
+        <Route path="/products/*" element={<Product />}/>
+        <Route path="/customers/*" element={<Customer/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </Router>
   );
