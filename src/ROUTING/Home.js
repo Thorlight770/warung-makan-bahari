@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
         Home
-        <button className='btn btn-primary' onClick={() => navigate(`/product/${id}`)}>Product</button>
+        <button className='btn btn-primary' onClick={() => navigate(`/products/${id}`)}>Product</button>
     </div>
   )
 }
