@@ -1,7 +1,11 @@
-import axios from "axios";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  createProduct,
+  getProduct,
+  updateProduct,
+} from "../services/ProductService";
 import * as Yup from "yup";
 
 export const ProductForm = () => {
@@ -14,12 +18,19 @@ export const ProductForm = () => {
       price: "",
       stock: "",
     },
+    onSubmit: () => {
+      if (params.id) {
+        handleEditBtn();
+      } else {
+        handleSubmitBtn();
+      }
+    },
     validationSchema: Yup.object({
-      name: Yup.string().min(2, "Minimum 2 characters").required("Required !"),
+      name: Yup.string()
+        .required("Tidak bole kosong !")
+        .min(5, "Minimal 5 character"),
     }),
   });
-
-  console.log("val: ", formik);
 
   useEffect(() => {
     if (params.id) {
@@ -29,12 +40,11 @@ export const ProductForm = () => {
 
   const getProductById = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3000/products/${id}`);
-      Yup()
-        formik.values.name = response.data.name
-        formik.values.price = response.data.price
-        formik.values.stock = response.data.stock
-        console.log(response.data);
+      const response = await getProduct(id);
+      formik.values.name = response.data.name;
+      formik.values.price = response.data.price;
+      formik.values.stock = response.data.stock;
+      formik.setFieldValue(response);
     } catch (error) {
       console.error(error);
     }
@@ -42,40 +52,33 @@ export const ProductForm = () => {
 
   let nav = useNavigate();
 
-  const handleSubmitBtn = (e) => {
-    e.preventDefault();
-    // axios.post("http://localhost:3000/products", formik.values).then((res) => {
-    //   console.log(res);
-    // });
-    // nav("/products");
-    console.log(formik);
+  const handleSubmitBtn = () => {
+    const response = createProduct(formik.values);
+    console.log(response);
+    nav("/products");
   };
 
-  const handleEditBtn = (e) => {
-    e.preventDefault();
-    // axios.put(`http://localhost:3000/products`, product).then((res) => {
-    //   console.log(res);
-    // });
-    // nav("/products");
-    console.log(formik);
+  const handleEditBtn = () => {
+    updateProduct(formik.values);
+    nav("/products");
   };
 
   return (
     <div className="d-flex mx-3">
-      <form onSubmit={formik.values.id ? handleEditBtn : handleSubmitBtn}>
-      {/* <form onSubmit={handleSubmitBtn}> */}
+      <form onSubmit={formik.handleSubmit}>
         <label className="label-control">NAME</label>
         <input
           className="form-control"
           type="text"
           name="name"
           onChange={formik.handleChange}
+          onFocus={formik.handleBlur}
           value={formik.values.name}
-          // value={formik.values.name}
         />
         {formik.errors.name && formik.touched.name && (
-          <p>{formik.errors.name}</p>
+          <small className="text-danger">{formik.errors.name}</small>
         )}
+        <br/>
         <label className="label-control">PRICE</label>
         <input
           className="form-control"
@@ -83,7 +86,6 @@ export const ProductForm = () => {
           name="price"
           onChange={formik.handleChange}
           value={formik.values.price}
-          // value={formik.values.price}
         />
         <label className="label-control">STOCK</label>
         <input
@@ -92,7 +94,6 @@ export const ProductForm = () => {
           name="stock"
           onChange={formik.handleChange}
           value={formik.values.stock}
-          // value={formik.values.stock}
         />
         <div className="my-3">
           {formik.values.id ? (

@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, Route, Routes, BrowserRouter as Router} from "react-router-dom";
-import { Customer } from "./Customer";
+import { Customer } from "./customer/Customer";
 import Home from "./Home";
 import { NotFoundPage } from "./NotFoundPage";
-import Product from "./Product";
+import Product from "./product/Product";
 
 const AppRouting = () => {
   return (

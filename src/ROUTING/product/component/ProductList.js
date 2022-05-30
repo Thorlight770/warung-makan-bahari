@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { deleteProduct, getProducts } from "../services/ProductService";
 
 export const ProductList = () => {
   const [list, setList] = useState([]);
@@ -14,9 +15,8 @@ export const ProductList = () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/products`);
+      const response = await getProducts();
       setList(response.data.content);
-      console.log(response.data);
       setPages({
         pageNumber: response.data.page,
         totalPage: response.data.totalPages,
@@ -27,10 +27,8 @@ export const ProductList = () => {
   };
 
   const handleDeleteBtn = (id) => {
-    axios.delete(`http://localhost:3000/products?id=${id}`).then((res) => {
-      getProduct();
-      console.log(res);
-    });
+    deleteProduct({id});
+    getProduct()
   };
 
   const handleEditBtn = (id) => {
@@ -42,7 +40,6 @@ export const ProductList = () => {
       setList(res.data.content);
       setPages({ ...pages, pageNumber: page });
     });
-    // nav(`?page=${page}`)
   };
 
   return (
@@ -97,7 +94,7 @@ export const ProductList = () => {
           {Array(pages.totalPage)
             .fill(1)
             .map((el, i) => (
-              <li className="page-items" key={i}>
+              <li className={i === pages.pageNumber? "page-item active" : "page-item"} key={i}>
                 <span
                   className="page-link"
                   style={{ cursor: "pointer" }}

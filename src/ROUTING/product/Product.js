@@ -3,9 +3,9 @@ import {
   Route,
   Routes
 } from "react-router-dom";
-import { NotFoundPage } from "./NotFoundPage";
-import { ProductForm } from "./ProductForm";
-import { ProductList } from "./ProductList";
+import { NotFoundPage } from "../NotFoundPage";
+import { ProductForm } from "./component/ProductForm";
+import { ProductList } from "./component/ProductList";
 
 const Product = () => {
   return (
