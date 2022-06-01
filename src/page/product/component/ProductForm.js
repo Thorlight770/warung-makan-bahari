@@ -1,15 +1,15 @@
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  createProduct,
-  getProduct,
-  updateProduct,
-} from "../services/ProductService";
 import * as Yup from "yup";
+import ProductFormBloc from "../../../bloc/ProductFormBloc";
 
-export const ProductForm = () => {
-  const params = useParams();
+export const ProductForm = ({bloc}) => {
+  const { params, 
+    getProductById,
+    nav, 
+    handleSubmitBtn, 
+    handleEditBtn } =
+    bloc();
 
   const formik = useFormik({
     initialValues: {
@@ -20,9 +20,9 @@ export const ProductForm = () => {
     },
     onSubmit: () => {
       if (params.id) {
-        handleEditBtn();
+        handleEditBtn(formik.values);
       } else {
-        handleSubmitBtn();
+        handleSubmitBtn(formik.values);
       }
     },
     validationSchema: Yup.object({
@@ -34,33 +34,16 @@ export const ProductForm = () => {
 
   useEffect(() => {
     if (params.id) {
-      getProductById(params.id);
+      getProduct();
     }
   }, []);
 
-  const getProductById = async (id) => {
-    try {
-      const response = await getProduct(id);
-      formik.values.name = response.data.name;
-      formik.values.price = response.data.price;
-      formik.values.stock = response.data.stock;
-      formik.setFieldValue(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  let nav = useNavigate();
-
-  const handleSubmitBtn = () => {
-    const response = createProduct(formik.values);
-    console.log(response);
-    nav("/products");
-  };
-
-  const handleEditBtn = () => {
-    updateProduct(formik.values);
-    nav("/products");
+  const getProduct = async () => {
+    const response = await getProductById(params.id);
+    formik.values.name = response.data.name;
+    formik.values.price = response.data.price;
+    formik.values.stock = response.data.stock;
+    formik.setFieldValue(response);
   };
 
   return (
@@ -78,7 +61,7 @@ export const ProductForm = () => {
         {formik.errors.name && formik.touched.name && (
           <small className="text-danger">{formik.errors.name}</small>
         )}
-        <br/>
+        <br />
         <label className="label-control">PRICE</label>
         <input
           className="form-control"

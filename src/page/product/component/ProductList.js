@@ -1,50 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { deleteProduct, getProducts } from "../services/ProductService";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
-export const ProductList = () => {
-  const [list, setList] = useState([]);
-  const [pages, setPages] = useState({});
-
-  let nav = useNavigate();
+export const ProductList = ({bloc}) => {
+  const {list,
+    pages,
+    getProduct,
+    handleEditBtn,
+    handleDeleteBtn,
+    handlePagination} = bloc();
 
   useEffect(() => {
     getProduct();
   }, []);
-
-  const getProduct = async () => {
-    try {
-      const response = await getProducts();
-      setList(response.data.content);
-      setPages({
-        pageNumber: response.data.page,
-        totalPage: response.data.totalPages,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleDeleteBtn = (id) => {
-    deleteProduct({id});
-    getProduct()
-  };
-
-  const handleEditBtn = (id) => {
-    nav(`form/${id}`);
-  };
-
-  const handlePagination = (page) => {
-    axios.get(`http://localhost:3000/products?page=${page}`).then((res) => {
-      setList(res.data.content);
-      setPages({ ...pages, pageNumber: page });
-    });
-  };
-
+  
   return (
     <div className="mx-5 px-5">
-      <Link className="btn btn-primary my-3" to={"form"}>
+      <Link className="btn btn-primary my-3" to="form">
         Add Product
       </Link>
       <h2>Product List</h2>

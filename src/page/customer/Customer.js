@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { CustomerForm } from './component/CustomerForm'
 import { CustomerList } from './component/CustomerList'
-import { NotFoundPage } from '../NotFoundPage'
+import { NotFoundPage } from '../../layout/NotFoundPage'
 
 export const Customer = () => {
   return (
