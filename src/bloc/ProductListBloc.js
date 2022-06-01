@@ -25,7 +25,7 @@ const ProductListBloc = (productRepository) => {
   };
 
   const handleDeleteBtn = async (id) => {
-    await deleteProduct({ id });
+    await deleteProduct(id);
     console.log(id);
     getProduct();
   };

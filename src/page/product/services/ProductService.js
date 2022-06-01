@@ -24,7 +24,7 @@ async function updateProduct(product){
 
 async function deleteProduct(id){
     console.log("[PAGE REPOSITORY]", id);
-    const response = await client.delete(`/products`, {id})
+    const response = await client.delete(`/products?id=${id}`)
     return response;
 }
 
