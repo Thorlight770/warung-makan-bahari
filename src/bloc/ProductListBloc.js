@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const ProductListBloc = (productRepository) => {
   const [list, setList] = useState([]);
   const [pages, setPages] = useState({});
+  const [loading, setLoading] = useState(false);
 
   let nav = useNavigate();
 
@@ -12,12 +13,14 @@ const ProductListBloc = (productRepository) => {
 
   const getProduct = async () => {
     try {
+      setLoading(true);
       const response = await getProducts();
       setList(response.data.content);
       setPages({
         pageNumber: response.data.page,
         totalPage: response.data.totalPages,
       });
+      setLoading(false);
       console.log(response);
     } catch (error) {
       console.error(error);
@@ -45,6 +48,7 @@ const ProductListBloc = (productRepository) => {
   return {
       list,
       pages,
+      loading,
       nav,
       getProduct,
       handleEditBtn,

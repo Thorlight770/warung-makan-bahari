@@ -7,9 +7,12 @@ import ProductFormBloc from '../bloc/ProductFormBloc';
 import ProductService from '../page/product/services/ProductService';
 import CustomerList from '../page/customer/component/CustomerList';
 import CustomerForm from "../page/customer/component/CustomerForm";
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AppRouters = () => {
     return(
+        <SkeletonTheme>
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="products" element={<Outlet />} >
@@ -22,6 +25,7 @@ const AppRouters = () => {
                 <Route path="form" element={<CustomerForm />}/>
             </Route>
         </Routes>
+        </SkeletonTheme>
     )
 };
 
