@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 
 export const ProductList = ({ bloc }) => {
   const {
-    list,
-    pages,
-    loading,
+    screenState,
     getProduct,
     handleEditBtn,
     handleDeleteBtn,
     handlePagination,
   } = bloc();
+
+  const{isLoading, pages, list} = screenState;
 
   useEffect(() => {
     getProduct();
@@ -26,11 +26,11 @@ export const ProductList = ({ bloc }) => {
       <table className="table">
         <thead>
           <tr>
-            <th>{!loading ? "#" : <Skeleton />}</th>
-            <th>{!loading ? "Name" : <Skeleton />}</th>
-            <th>{!loading ? "Price" : <Skeleton />}</th>
-            <th>{!loading ? "Stock" : <Skeleton />}</th>
-            <th>{!loading ? "Action" : <Skeleton />}</th>
+            <th>{!isLoading ? "#" : <Skeleton />}</th>
+            <th>{!isLoading ? "Name" : <Skeleton />}</th>
+            <th>{!isLoading ? "Price" : <Skeleton />}</th>
+            <th>{!isLoading ? "Stock" : <Skeleton />}</th>
+            <th>{!isLoading ? "Action" : <Skeleton />}</th>
           </tr>
         </thead>
         <tbody>
@@ -38,13 +38,13 @@ export const ProductList = ({ bloc }) => {
             return (
               <tr key={index}>
                 <td>
-                  {loading ? <Skeleton /> : pages.pageNumber * 3 + (index + 1)}
+                  {isLoading ? <Skeleton /> : pages.pageNumber * 3 + (index + 1)}
                 </td>
-                <td>{loading ? <Skeleton /> : data.name}</td>
-                <td>{loading ? <Skeleton /> : `Rp.${data.price},-`}</td>
-                <td>{loading ? <Skeleton /> : data.stock}</td>
+                <td>{isLoading ? <Skeleton /> : data.name}</td>
+                <td>{isLoading ? <Skeleton /> : `Rp.${data.price},-`}</td>
+                <td>{isLoading ? <Skeleton /> : data.stock}</td>
                 <td>
-                  {loading ? (
+                  {isLoading ? (
                     <Skeleton />
                   ) : (
                     <button
@@ -54,7 +54,7 @@ export const ProductList = ({ bloc }) => {
                       <i className="bi bi-pencil-fill"></i>
                     </button>
                   )}
-                  {loading ? (
+                  {isLoading ? (
                     <Skeleton />
                   ) : (
                     <button className="btn btn-danger mx-3">
